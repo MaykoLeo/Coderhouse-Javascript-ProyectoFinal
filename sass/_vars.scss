@@ -1,0 +1,17 @@
+//vars
+$colorDorado: wheat;
+$resolMobileTablet: 768px;
+
+$colores: (
+    underline: rgb(196, 142, 41),
+    gris: gray,
+);
+
+
+//mixin
+@mixin flexColumnAllCenter {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}

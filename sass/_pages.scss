@@ -1,0 +1,332 @@
+/* PAGINAS */
+
+/* introduccion */
+
+.introduccion .presentacion {
+    margin-top: 140px;
+    @include flexColumnAllCenter;
+    padding: 20px;
+
+    .texto-intro-galeria {
+        flex-direction: column;
+        font-size: 18px;
+        order: -1;
+
+        h1 {
+            font-size: 30px;
+            margin: 20px;
+            border-bottom: solid 2px map-get($colores, underline);
+            display: inline-block;
+            font-weight: bold;
+        }
+
+        p {
+            font-size: 20px;
+            padding-bottom: 20px;
+        }
+    }
+
+    img {
+        width: 40%;
+        height: auto;
+        border-radius: 10px;
+        order: -1;
+    }
+}
+
+.titulo-main {
+    font-size: 30px;
+    margin: 20px;
+    border-bottom: solid 2px map-get($colores, underline);
+    display: inline-block;
+}
+
+/* galerías */
+
+div.galeria-texto {
+    font-size: 30px;
+    align-items: center;
+    text-align: center;
+    border-bottom: solid 5px map-get($map: $colores, $key: underline);
+    padding-top: 30px;
+    padding-bottom: 5px;
+
+    h4 {
+        display: block;
+        font-weight: bold;
+    }
+}
+
+section.galeria-container {
+    background-color: bisque;
+    width: 100%;
+    padding: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+    .item-gallery {
+        width: 600px;
+        height: auto;
+
+        img {
+            width: 100%;
+            height: 100%;
+        }
+    }
+}
+
+.carousel-inner {
+    background-color: bisque;
+    width: 100%;
+    padding: 25px;
+}
+
+
+/* PAGINA UBICACION */
+
+#ubicacion .ubicacion-main {
+    margin-top: 140px;
+    padding-bottom: 25px;
+    @include flexColumnAllCenter;
+
+    p {
+        width: 80%;
+        font-size: 20px;
+        padding-bottom: 20px;
+    }
+
+    .map {
+        width: 600px;
+        height: 500px;
+    }
+}
+
+
+/* PÁGINA CONTACTO */
+
+.contacto {
+    display: block;
+
+
+    .contacto-texto {
+        margin-top: 140px;
+        padding-bottom: 25px;
+        @include flexColumnAllCenter;
+
+        p {
+            width: 80%;
+            font-size: 20px;
+            text-indent: 5%;
+            line-height: 30px;
+        }
+
+        span {
+            font-weight: 700;
+        }
+    }
+
+    .formulario-contacto {
+        background-color: map-get($colores, underline);
+        box-sizing: border-box;
+        border-radius: 5px;
+        width: 500px;
+        margin: auto;
+        margin-bottom: 50px;
+        padding: 10px 10px;
+        padding-bottom: 20px;
+
+        .formulario {
+            .form-item {
+                width: 100%;
+                margin-bottom: 5px;
+                padding: 15px;
+                font-size: 15px;
+                box-sizing: border-box;
+            }
+
+            h2 {
+                text-align: center;
+                color: white;
+                font-size: 25px;
+                padding-bottom: 8px;
+            }
+
+            .textArea {
+                max-width: 100%;
+                min-width: 100%;
+                max-height: 250px;
+                min-height: 150px;
+            }
+        }
+
+        p {
+            text-align: center;
+        }
+    }
+}
+
+#boton-enviar {
+    background-color: map-get($map: $colores, $key: gris);
+    color: white;
+    font-size: 20px;
+    padding: 15px;
+    margin-bottom: 20px;
+
+    &:hover {
+        cursor: pointer;
+    }
+}
+
+
+/* PAGINA RESERVA */
+
+.reserva {
+    .reserva-main {
+        margin-top: 140px;
+        padding-bottom: 25px;
+        @include flexColumnAllCenter;
+
+        h2 {
+            font-size: 20px;
+        }
+
+        .formulario {
+            background-color: #4585E6;
+            color: beige;
+            width: 300px;
+            height: auto;
+            padding: 10px;
+            box-sizing: border-box;
+            margin: 20px;
+            font-size: 25px;
+
+            input {
+                width: 100%;
+                height: 30px;
+                margin-bottom: 20px;
+                font-size: 18px;
+            }
+        }
+    }
+
+    #boton-enviar-reserva {
+        @extend #boton-enviar;
+        height: auto;
+        padding: 10px;
+        text-align: center;
+    }
+}
+
+/* PAGINA DISPONIBILIDAD */
+
+.disponibilidad {
+    margin-top: 140px;
+    padding-bottom: 25px;
+    @include flexColumnAllCenter;
+
+    h1 {
+        font-size: 30px;
+        margin: 20px;
+        border-bottom: solid 2px map-get($colores, underline);
+        display: inline-block;
+        font-weight: bold;
+    }
+
+    .rooms-container {
+        width: 100%;
+        @include flexColumnAllCenter;
+
+        .habitacion-disponible {
+            width: 700px;
+            margin-bottom: 30px;
+            position: relative;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+
+            h2 {
+                width: 100%;
+                text-align: start;
+                margin: 8px 0;
+            }
+
+            .descripcion {
+                width: 50%;
+                display: block;
+                border: solid 1px hsla(0, 0%, 0%, 0.281);
+
+                .imagen {
+                    img {
+                        width: 100%;
+                    }
+                }
+
+                .detalles-container {
+                    .detalles {
+                        display: flex;
+                        flex-direction: row;
+                        flex-wrap: wrap;
+                        gap: 10px;
+                        font-size: 20px;
+
+                        .elemento-detalle {
+                            position: relative;
+                            display: flex;
+                            flex-direction: column;
+                            align-items: initial;
+                            flex-basis: 45%;
+                            margin-left: 10px;
+                        }
+                    }
+                }
+
+            }
+
+            .costo {
+                margin-left: 5px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                flex-basis: 45%;
+
+                .precio {
+                    span {
+                        font-size: 1.2rem;
+                        font-weight: 300
+                    }
+                }
+
+                .boton-disponibilidad {
+                    margin-top: 1.1rem;
+                    background-color: rgb(13, 71, 119);
+                    color: white;
+                    font-size: 18px;
+                    padding: 10px;
+
+
+                    &:hover {
+                        cursor: pointer;
+                    }
+                }
+            }
+
+
+            &:nth-child(n+2) {
+                border-top: solid 5px map-get($colores, underline);
+            }
+
+        }
+
+
+    }
+
+
+
+
+
+}

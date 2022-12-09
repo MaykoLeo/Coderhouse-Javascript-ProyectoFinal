@@ -1,0 +1,89 @@
+/* HEADER */
+
+#header {
+    width: auto;
+    height: 150px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 999;
+    background: transparent;
+    transition: .25s ease-in;
+
+    .logo-nombre {
+        height: 88px;
+        text-align: center;
+        padding: 0 min(70px);
+
+        img {
+            width: 450px;
+            height: auto;
+        }
+    }
+
+    &:hover {
+        background-color: rgba(255, 255, 255, 0.5);
+        transition: .25s ease-in;
+    }
+}
+
+/* ICONO MENU HAMBURGUESA */
+
+#check-menu {
+    display: none;
+}
+
+.img-menu-hamb {
+    display: none;
+    padding: 0 5px;
+
+    &:hover {
+        cursor: pointer;
+    }
+
+    img {
+        width: 40px;
+        height: auto;
+    }
+}
+
+/* BARRA NAVEGACION */
+
+.navigation-bar {
+    padding: 0 2rem;
+    width: 100%;
+    text-align: center;
+
+    .botones {
+        border-bottom: solid 1px $colorDorado;
+        padding: 30px;
+        height: 2rem;
+        width: auto;
+        display: flex;
+        gap: 50px;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+
+        .boton-menu {
+            display: block;
+            padding: 2px;
+
+            a {
+                color: black;
+                font-size: 20px;
+                text-decoration: none;
+
+                &:hover {
+                    color: rgb(155, 140, 113);
+                }
+            }
+
+            &:hover {
+                transform: scale(1.1);
+                cursor: pointer;
+            }
+        }
+    }
+}

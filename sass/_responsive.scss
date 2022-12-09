@@ -1,0 +1,241 @@
+@media (min-width: 1024px) {
+    /* animacion galeria */
+
+    section.galeria-container .item-gallery img {
+        filter: grayscale(1);
+        width: 100%;
+        height: 100%;
+        transition: filter 0.4s ease-in-out;
+    }
+
+    .galeria-container .item-gallery img:hover {
+        transform: scale(1.06);
+        box-shadow: 2px 2px 10px 2px rgba(0, 0, 0, 0.5);
+        filter: none;
+        border: 4px solid rgb(163, 126, 77);
+    }
+}
+
+
+@media (max-width: $resolMobileTablet) {
+    /* BARRA NAVEGACION HAMBURG */
+
+    #header {
+        background-color: rgba(255, 255, 255, 0.5);
+        width: 100%;
+        height: 80px;
+
+        .logo-nombre {
+            @include flexColumnAllCenter;
+            height: 88px;
+            padding: 0 0 0 min(70px);
+
+            img {
+                width: 250px;
+                height: auto;
+            }
+        }
+    }
+
+    .img-menu-hamb {
+        img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 70px;
+        }
+
+        display: block;
+    }
+
+    .navigation-bar {
+        position: absolute;
+        background: rgba(0, 0, 0, 0.901);
+        width: auto;
+        height: 278px;
+        padding: 0;
+        margin-left: -100%;
+        transition: all 0.3s;
+
+        .botones {
+            display: block;
+            width: auto;
+            flex-direction: column;
+            position: relative;
+            top: 0;
+            left: 0;
+            text-align: initial;
+            border-bottom: none;
+            padding: 0;
+
+            .boton-menu {
+                margin: 0%;
+                padding: 12px 5px;
+
+                a {
+                    color: $colorDorado;
+                    font-size: 1.40rem;
+                }
+            }
+        }
+    }
+
+    #check-menu:checked~.navigation-bar {
+        margin: 0;
+    }
+
+    /* Presentacion Index */
+
+    #intro {
+        margin: 0;
+
+        .presentacion {
+            overflow: auto;
+            padding: 0 0;
+            margin: 0;
+
+            h2 {
+                width: min(350px);
+                margin-top: 200px;
+            }
+        }
+    }
+
+    #sitio {
+        .presentacion-habitacion .img-room-home {
+            order: 1;
+        }
+
+        div {
+            display: flex;
+            flex-direction: column;
+
+            img {
+                width: 70%;
+                height: auto;
+            }
+        }
+    }
+
+    /* Cards Eventos Index*/
+
+    #evento {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        .evento-presentacion {
+            .card {
+                margin-bottom: 20px;
+                pointer-events: none;
+                opacity: 1;
+
+                .info {
+                    opacity: 1;
+                    transform: none;
+                }
+
+                img {
+                    filter: brightness(0.6);
+                }
+            }
+
+        }
+    }
+
+    /* Paginas habitaciones & restaurant */
+
+    .introduccion {
+        margin: 20px;
+    }
+
+    .galeria-container {
+        display: flex;
+        flex-direction: column;
+    }
+
+    /* Pag ubicacion */
+
+    #ubicacion .ubicacion-main {
+        padding-top: 50px;
+
+        iframe.map {
+            padding: 10px;
+            width: 320px;
+
+        }
+    }
+
+    /* Pag contacto */
+
+    .contacto {
+        .contacto-texto {
+            padding-top: 50px;
+        }
+
+        .formulario-contacto {
+            margin: 10px;
+        }
+    }
+
+    /* Pag reserva */
+
+    .reserva .reserva-main {
+        padding-top: 50px;
+    }
+
+
+    /* Pag Disponibilidad */
+
+    .disponibilidad {
+        .rooms-container {
+            .habitacion-disponible {
+                @include flexColumnAllCenter;
+                width: 350px;
+
+                h2 {
+                    width: 100%;
+                    text-align: center;
+                    margin: 8px 0;
+                }
+
+                .descripcion {
+                    width: 80%;
+
+                    .detalles-container {
+                        .detalles {
+                            flex-direction: column;
+                            flex-wrap: wrap;
+                            align-content: flex-start;
+                            justify-content: center;
+                            align-items: flex-start;
+
+                            .elemento-detalle {
+                                display: none;
+                                display: flex;
+                                flex-basis: 0;
+                            }
+                        }
+                    }
+                }
+
+                .costo {
+                    margin-top: 10px;
+                }
+
+            }
+        }
+    }
+}
+
+
+/* Ajuste Card Index */
+@media (min-width: 769px) and (max-width: 861px) {
+    #evento {
+        .evento-presentacion {
+            .card {
+                width: 250px;
+            }
+        }
+    }
+}

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="../assets/img/logoHotel.png">
+    <link rel="stylesheet" href="../sass/main.css">
+    <title>Hotel Leviton | Reserva</title>
+    <meta name="description"
+        content="Bienvenido a Hotel Leviton donde la comodidad y el lujo se asocian para brindarle la mejor y más relajante estadía en Córdoba">
+    <meta name="keywords" content="hotel, habitación, gastronomía, comodidad, hospitalidad, lujo, córdoba, relax">
+</head>
+
+<body>
+    <div id="body-container">
+        <header id="header">
+            <div class="logo-nombre">
+                <a href="../index.html" id="top">
+                    <img id="top" class="logo" src="../assets/img/hotel_leviton_logo_nombre.png" alt="logo">
+                </a>
+            </div>
+            <input type="checkbox" name="" id="check-menu">
+            <label class="img-menu-hamb" for="check-menu"><img src="../assets/img/menu-hamburg.png"
+                    alt="img-menu-hamb"></label>
+            <nav class="navigation-bar">
+                <ul class="botones">
+                    <li class="boton-menu"><a href="../pages/habitaciones.html" target="_self">Habitaciones</a></li>
+                    <li class="boton-menu"><a href="../pages/barRestaurant.html">Bar & Restaurant</a></li>
+                    <li class="boton-menu"><a href="../pages/ubicacion.html">Ubicación</a></li>
+                    <li class="boton-menu"><a href="../pages/contacto.html">Contáctanos</a></li>
+                    <li class="boton-menu"><a href="../pages/reserva.html">Reserva</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <main id="main">
+            <div class="reserva">
+                <section class="reserva-main">
+                    <h1 class="titulo-main">Reserva</h1>
+                    <h2>Bienvenido. Seleccione sus fechas y cantidad de personas</h2>
+                    <form action="" class="formulario">
+                        <div class="fechas">
+                            <label class="form-item form-item-date">
+                                Desde
+                                <input type="date" name="" id="" value="2022-07-31" min="2022-07-31">
+                            </label>
+                            <label class="form-item form-item-date">
+                                Hasta
+                                <input type="date" name="" id="" value="2022-08-01" min="2022-08-01">
+                            </label>
+                        </div>
+                        <div class="form-personas">
+                            <label class="form-item">
+                                Adultos
+                                <input type="number" name="adultos" id="" placeholder="2">
+                            </label>
+                            <label class="form-item">
+                                Niños
+                                <input type="number" name="niños" id="" placeholder="0">
+                            </label>
+                        </div>
+                        <a href="./disponibilidad.html">
+                            <input class="form-item" type="button" value="Buscar Habitaciones"
+                                id="boton-enviar-reserva">
+                        </a>
+                    </form>
+
+                </section>
+            </div>
+
+            <div id="boton-home-fixed">
+                <a class="boton-inicio" href="#top">
+                    <img src="../assets/img/homeBack.png" alt="homeBackIcon">
+                </a>
+            </div>
+        </main>
+
+
+        <footer id="footer">
+            <div>
+                <a href="https://www.facebook.com/" target="_blank">
+                    <img src="../assets/img/facebook.png" alt="facebookIcon" width="30" height="30">
+                </a>
+                <a href="https://www.instagram.com" target="_blank">
+                    <img src="../assets/img/instagram.png" alt="instagramIcon" width="30" height="30">
+                </a>
+                <a href="https://web.whatsapp.com/" target="_blank">
+                    <img src="../assets/img/whatsapp.png" alt="twitterIcon" width="30" height="30">
+                </a>
+            </div>
+            <p>©2022. Todos los derechos reservados</p>
+        </footer>
+
+        <!-- <script src="./js/data.js"></script>
+        <script src="./js/app.js"></script> -->
+    </div>
+</body>
+
+</html>

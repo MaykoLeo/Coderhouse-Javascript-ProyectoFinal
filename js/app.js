@@ -2,17 +2,17 @@
 ----------------- */
 
 //Array de Habitaciones
-
 const habitacionesTodas = [kingRoom, dobleQueenRoom, kingRoomPremium, simpleSuite]
-
+const habitacionesEnCarrito = []
 
 
 
 /*  Query de Elementos
 ---------------------- */
 const roomsContainer = document.querySelector('.rooms-container')
-
-
+const botonCarrito = document.querySelector('#boton-carrito-activo')
+const modalCarrito = document.querySelector('#modal-carrito')
+const modalBotonCerrar = document.querySelector('#modal-boton-cerrar')
 
 /*  Funciones
 ------------- */
@@ -106,11 +106,41 @@ const renderizarHabitaciones = () => {
 
         const botonDisponibilidad = document.createElement('button')
         botonDisponibilidad.classList.add('boton-disponibilidad')
+        botonDisponibilidad.setAttribute('data-id', habitacion.id)
         botonDisponibilidad.innerText = `Reservar`
         costo.append(botonDisponibilidad)
 
+        //Se podria haber agregado todo usando sólo un innerHTML
+
     })
 
+    const botonReservar = document.querySelectorAll('.boton-disponibilidad')
+    botonReservar.forEach((boton) => {
+        boton.addEventListener('click', agregarProducto)
+        boton.addEventListener('click', () => {
+            console.log('pulsaste reservar');
+        })
+
+
+    })
+}
+
+
+
+//Funcion para obtener el ID del boton pulsado
+function agregarProducto(e) {
+    const habitacionID = e.target.getAttribute('data-id')
+
+    const habitacionAgregada = habitacionesTodas.find(habitacion => habitacion.id === habitacionID)
+
+    habitacionesEnCarrito.push(habitacionAgregada)
+
+    console.log(habitacionesEnCarrito);
+
+    //cambia la clase del boton para desactivarlo en la sesion
+    e.currentTarget.classList.add('boton-desactivado')
+    e.currentTarget.classList.remove('boton-disponibilidad')
+    e.currentTarget.innerText = `En el carrito`
 
 
 }
@@ -118,14 +148,24 @@ const renderizarHabitaciones = () => {
 
 
 
+
+
+
 /*  EventListeners
 ------------------ */
 
+botonCarrito.addEventListener('click', () => {
+    modalCarrito.classList.add('activo')
+})
 
-
+modalBotonCerrar.addEventListener('click', () => {
+    modalCarrito.classList.remove('activo')
+})
 
 
 /*  Ejecuciones
 ---------------*/
 
 renderizarHabitaciones()
+
+

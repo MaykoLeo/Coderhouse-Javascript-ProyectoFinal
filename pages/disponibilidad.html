@@ -8,6 +8,10 @@
     <link rel="icon" href="../assets/img/logoHotel.png">
     <link rel="stylesheet" href="../sass/main.css">
     <title>Hotel Leviton | Disponibilidad</title>
+
+    <!-- Iconos Bootstrap -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
+
     <meta name="description"
         content="Bienvenido a Hotel Leviton donde la comodidad y el lujo se asocian para brindarle la mejor y más relajante estadía en Córdoba">
     <meta name="keywords" content="hotel, habitación, gastronomía, comodidad, hospitalidad, lujo, córdoba, relax">
@@ -35,7 +39,7 @@
             </nav>
         </header>
 
-        <main id="main">
+        <main id="main-container">
             <section class="disponibilidad">
                 <h1>Seleccione la habitación</h1>
                 <div class="rooms-container">
@@ -46,10 +50,34 @@
             </section>
 
 
+
+            <div id="boton-carrito-activo">
+                <button id="boton-carrito">
+                    <i class="bi bi-cart-check">Carrito</i>
+                </button>
+            </div>
+
+
             <div id="boton-home-fixed">
                 <a class="boton-inicio" href="#top">
                     <img src="../assets/img/homeBack.png" alt="homeBackIcon">
                 </a>
+            </div>
+
+
+
+            <div id="modal-carrito" class="modal-carrito">
+                <h2>este es un modal</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum, cum impedit. In praesentium eum vel
+                    unde distinctio eligendi, voluptatibus fugiat quae veritatis at nulla id officia sit fugit quisquam.
+                </p>
+
+                <div id="modal-botonera">
+                    <button id="modal-boton-cerrar">Cerrar</button>
+                    <button id="modal-boton-vaciarCarrito">Vaciar Carrito</button>
+                    <button id="modal-boton-pagar">Pagar</button>
+                </div>
+
             </div>
         </main>
 

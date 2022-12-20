@@ -195,6 +195,7 @@ section.galeria-container {
         }
 
         .formulario {
+            @include flexColumnAllCenter;
             background-color: #4585E6;
             color: beige;
             width: 300px;
@@ -215,6 +216,7 @@ section.galeria-container {
 
     #boton-enviar-reserva {
         @extend #boton-enviar;
+        width: 100%;
         height: auto;
         padding: 10px;
         text-align: center;

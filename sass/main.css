@@ -430,6 +430,10 @@ section.galeria-container .item-gallery img {
   font-size: 20px;
 }
 .reserva .reserva-main .formulario {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   background-color: #4585E6;
   color: beige;
   width: 300px;
@@ -446,6 +450,7 @@ section.galeria-container .item-gallery img {
   font-size: 18px;
 }
 .reserva #boton-enviar-reserva {
+  width: 100%;
   height: auto;
   padding: 10px;
   text-align: center;

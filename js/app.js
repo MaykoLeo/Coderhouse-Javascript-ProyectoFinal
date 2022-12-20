@@ -29,6 +29,8 @@ const carritoContainer = document.querySelector('#carrito-container')
 
 // Renderizar Habitaciones
 const renderizarHabitaciones = () => {
+    roomsContainer.innerHTML = ""
+
     habitacionesTodas.forEach((habitacion) => {
         const habitacionDisponible = document.createElement('div')
         habitacionDisponible.classList.add('habitacion-disponible')
@@ -132,6 +134,9 @@ const renderizarHabitaciones = () => {
         })
 
     })
+
+    desactivarBotonesReservar()
+    desactivarBotonCarrito()
 }
 
 
@@ -145,16 +150,9 @@ function agregarProducto(e) {
 
     localStorage.setItem('productos-en-carrito', JSON.stringify(habitacionesEnCarrito))
 
-
-
-
-    ////SACAR///////////
-    console.log(habitacionesEnCarrito);
-
     if (habitacionesEnCarrito.length > 0) {
         botonCarritoActivo.classList.remove('boton-carrito-desactivado')
     }
-
 
     //cambia la clase del boton para desactivarlo en la sesion
     e.currentTarget.classList.add('boton-desactivado')
@@ -167,8 +165,6 @@ function agregarProducto(e) {
 //fincion para desactivar los botones de reserva que ya estén en el carrito al cargar la pagina
 function desactivarBotonesReservar() {
     const botonesReservar = document.querySelectorAll('.boton-disponibilidad')
-
-    /* console.log(botonesReservar[0].dataset); */
 
     habitacionesEnCarrito.forEach(habitReservada => {
         const habitacionesID = habitReservada.id
@@ -193,8 +189,6 @@ function desactivarBotonesReservar() {
 //funcion para ocultar el boton carrito
 function desactivarBotonCarrito() {
     botonCarritoActivo.classList.add('boton-carrito-desactivado')
-    console.log(habitacionesEnCarrito);
-
 
     if (habitacionesEnCarrito.length > 0) {
         botonCarritoActivo.classList.remove('boton-carrito-desactivado')
@@ -206,11 +200,6 @@ function desactivarBotonCarrito() {
 
 function renderizarCarrito() {
     carritoContainer.innerHTML = "";
-
-
-    habitacionesEnCarrito = JSON.parse(localStorage.getItem('productos-en-carrito'))
-
-
 
     //hacer fecha
     const carritoFecha = document.createElement('div')
@@ -248,11 +237,13 @@ function renderizarCarrito() {
 
     })
 
+    const total = calcularTotal()
+
     //hacer total
     const carritoPrecioTotal = document.createElement('div')
     carritoPrecioTotal.classList.add('carrito-precio-total')
     carritoPrecioTotal.innerHTML = `
-        <p>Total: $25003 </p>
+        <p>Total: $${total} </p>
     `
     carritoContainer.append(carritoPrecioTotal)
 
@@ -272,14 +263,72 @@ function renderizarCarrito() {
 
     botonCerrarModal()
     botonesEliminarProducto()
+    botonVaciarCarrito()
+    botonPagar()
 }
 
-function eliminarProductoCarrito() {
 
+function calcularTotal() {
+    const totalCalculado = habitacionesEnCarrito.reduce((acc, habitacion) => acc + (habitacion.precio * cantidadNoches), 0)
+    return totalCalculado
+}
+
+function eliminarProductoCarrito(e) {
+    let idBoton = e.currentTarget.dataset.id
+
+    const index = habitacionesEnCarrito.findIndex(habitacion => habitacion.id === idBoton)
+    habitacionesEnCarrito.splice(index, 1);
+
+    renderizarCarrito()
+    localStorage.setItem('productos-en-carrito', JSON.stringify(habitacionesEnCarrito))
+    renderizarHabitaciones()
 }
 
 
+function botonVaciarCarrito() {
+    const modalBotonVaciarCarrito = document.querySelector('#modal-boton-vaciarCarrito')
+    modalBotonVaciarCarrito.addEventListener('click', () => {
+        habitacionesEnCarrito.length = 0
+        localStorage.setItem('productos-en-carrito', JSON.stringify(habitacionesEnCarrito))
+        renderizarCarrito()
+        renderizarHabitaciones()
+    })
+}
 
+
+function botonPagar() {
+    const modalBotonPagar = document.querySelector('#modal-boton-pagar')
+    modalBotonPagar.addEventListener('click', () => {
+
+        if (habitacionesEnCarrito.length > 0) {
+            modalCarrito.classList.remove('activo')
+            habitacionesEnCarrito.length = 0
+            localStorage.setItem('productos-en-carrito', JSON.stringify(habitacionesEnCarrito))
+            renderizarHabitaciones()
+
+            Swal.fire({
+                icon: 'success',
+                title: 'Reserva realizada',
+                showConfirmButton: true,
+                confirmButtonText: 'Aceptar',
+
+            })
+        } else {
+            modalCarrito.classList.remove('activo')
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: 'El carrito está vacío',
+                confirmButtonText: 'Aceptar',
+
+            })
+        }
+
+    })
+
+
+
+}
 
 
 /*  EventListeners
@@ -300,9 +349,11 @@ function botonCerrarModal() {
 
 function botonesEliminarProducto() {
     const eliminarProducto = document.querySelectorAll('.carrito-producto-eliminar')
-
-    eliminarProducto.addEventListener('click', eliminarProductoCarrito)
+    eliminarProducto.forEach(producto => {
+        producto.addEventListener('click', eliminarProductoCarrito)
+    })
 }
+
 
 
 
@@ -310,7 +361,7 @@ function botonesEliminarProducto() {
 /*  Ejecuciones
 ---------------*/
 
-desactivarBotonCarrito()
+
 renderizarHabitaciones()
-desactivarBotonesReservar()
+
 

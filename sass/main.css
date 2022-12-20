@@ -593,10 +593,10 @@ section.galeria-container .item-gallery img {
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  width: 80%;
+  width: 90%;
   height: auto;
-  max-height: 60vh;
-  top: 25vh;
+  max-height: 85vh;
+  top: 5vh;
   padding: 1rem;
   border-radius: 1rem;
   visibility: hidden;

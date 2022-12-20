@@ -1,4 +1,6 @@
 ##En proceso
 
-Carrito funcional
-validar fechas
+
+Carrito funcional,  
+validar fechas,  
+agregar librerias

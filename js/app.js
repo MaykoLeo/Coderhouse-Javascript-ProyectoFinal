@@ -3,6 +3,7 @@
 
 //Array de Habitaciones
 const habitacionesTodas = [kingRoom, dobleQueenRoom, kingRoomPremium, simpleSuite]
+
 const habitacionesEnCarrito = []
 
 
@@ -13,9 +14,16 @@ const roomsContainer = document.querySelector('.rooms-container')
 const botonCarrito = document.querySelector('#boton-carrito-activo')
 const modalCarrito = document.querySelector('#modal-carrito')
 const modalBotonCerrar = document.querySelector('#modal-boton-cerrar')
+const botonCarritoActivo = document.querySelector('.boton-carrito-activo')
 
 /*  Funciones
 ------------- */
+
+/* if (habitacionesEnCarrito) {
+    habitacionesEnCarrito = JSON.parse(localStorage.getItem('productos-en-carrito'))
+} */
+
+
 
 // Renderizar Habitaciones
 const renderizarHabitaciones = () => {
@@ -121,7 +129,6 @@ const renderizarHabitaciones = () => {
             console.log('pulsaste reservar');
         })
 
-
     })
 }
 
@@ -130,22 +137,33 @@ const renderizarHabitaciones = () => {
 //Funcion para obtener el ID del boton pulsado
 function agregarProducto(e) {
     const habitacionID = e.target.getAttribute('data-id')
-
     const habitacionAgregada = habitacionesTodas.find(habitacion => habitacion.id === habitacionID)
 
     habitacionesEnCarrito.push(habitacionAgregada)
 
+    localStorage.setItem('productos-en-carrito', JSON.stringify(habitacionesEnCarrito))
     console.log(habitacionesEnCarrito);
+
+    if (habitacionesEnCarrito.length > 0) {
+        botonCarritoActivo.classList.remove('boton-carrito-desactivado')
+    }
+
 
     //cambia la clase del boton para desactivarlo en la sesion
     e.currentTarget.classList.add('boton-desactivado')
     e.currentTarget.classList.remove('boton-disponibilidad')
     e.currentTarget.innerText = `En el carrito`
 
-
 }
 
+//funcion para ocultar el boton carrito
+function desactivarBotonCarrito() {
+    botonCarritoActivo.classList.add('boton-carrito-desactivado')
 
+    if (habitacionesEnCarrito.length > 0) {
+        botonCarritoActivo.classList.remove('boton-carrito-desactivado')
+    }
+}
 
 
 
@@ -156,6 +174,7 @@ function agregarProducto(e) {
 
 botonCarrito.addEventListener('click', () => {
     modalCarrito.classList.add('activo')
+
 })
 
 modalBotonCerrar.addEventListener('click', () => {
@@ -165,6 +184,8 @@ modalBotonCerrar.addEventListener('click', () => {
 
 /*  Ejecuciones
 ---------------*/
+
+desactivarBotonCarrito()
 
 renderizarHabitaciones()
 

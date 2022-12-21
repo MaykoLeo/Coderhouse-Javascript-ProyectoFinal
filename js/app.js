@@ -6,7 +6,7 @@ const habitacionesTodas = [kingRoom, dobleQueenRoom, kingRoomPremium, simpleSuit
 
 
 let habitacionesEnCarrito = JSON.parse(localStorage.getItem('productos-en-carrito')) || []
-let cantidadNoches = 2
+let cantidadNoches = localStorage.getItem('cantidad-noches')
 
 
 /*  Query de Elementos
@@ -24,8 +24,6 @@ const carritoContainer = document.querySelector('#carrito-container')
 
 /*  Funciones
 ------------- */
-
-
 
 // Renderizar Habitaciones
 const renderizarHabitaciones = () => {
@@ -198,10 +196,19 @@ function desactivarBotonCarrito() {
 
 
 
+
 function renderizarCarrito() {
     carritoContainer.innerHTML = "";
 
     //hacer fecha
+    /* const fechaDesde = localStorage.getItem('dia-desde')
+    console.log(fechaDesde);
+
+    const desde = fechaDesde.toString().slice(0, 10);
+    console.log(desde); */
+
+
+
     const carritoFecha = document.createElement('div')
     carritoFecha.classList.add('carrito-fecha')
     carritoFecha.innerHTML = `
@@ -239,7 +246,6 @@ function renderizarCarrito() {
 
     const total = calcularTotal()
 
-    //hacer total
     const carritoPrecioTotal = document.createElement('div')
     carritoPrecioTotal.classList.add('carrito-precio-total')
     carritoPrecioTotal.innerHTML = `
@@ -323,11 +329,7 @@ function botonPagar() {
 
             })
         }
-
     })
-
-
-
 }
 
 
@@ -360,7 +362,6 @@ function botonesEliminarProducto() {
 
 /*  Ejecuciones
 ---------------*/
-
 
 renderizarHabitaciones()
 

@@ -4,7 +4,7 @@
 //Array de Habitaciones
 const habitacionesTodas = [kingRoom, dobleQueenRoom, kingRoomPremium, simpleSuite]
 
-
+let habitacionesDisponibles = JSON.parse(localStorage.getItem('habitaciones-disponibles')) || []
 let habitacionesEnCarrito = JSON.parse(localStorage.getItem('productos-en-carrito')) || []
 let cantidadNoches = localStorage.getItem('cantidad-noches')
 
@@ -14,7 +14,6 @@ let cantidadNoches = localStorage.getItem('cantidad-noches')
 const roomsContainer = document.querySelector('.rooms-container')
 const botonCarrito = document.querySelector('#boton-carrito-activo')
 const modalCarrito = document.querySelector('#modal-carrito')
-
 const botonCarritoActivo = document.querySelector('.boton-carrito-activo')
 
 //query de carrito
@@ -29,7 +28,7 @@ const carritoContainer = document.querySelector('#carrito-container')
 const renderizarHabitaciones = () => {
     roomsContainer.innerHTML = ""
 
-    habitacionesTodas.forEach((habitacion) => {
+    habitacionesDisponibles.forEach((habitacion) => {
         const habitacionDisponible = document.createElement('div')
         habitacionDisponible.classList.add('habitacion-disponible')
         habitacionDisponible.innerHTML = `
@@ -142,7 +141,7 @@ const renderizarHabitaciones = () => {
 //Funcion para obtener el ID del boton pulsado
 function agregarProducto(e) {
     const habitacionID = e.target.getAttribute('data-id')
-    const habitacionAgregada = habitacionesTodas.find(habitacion => habitacion.id === habitacionID)
+    const habitacionAgregada = habitacionesDisponibles.find(habitacion => habitacion.id === habitacionID)
 
     habitacionesEnCarrito.push(habitacionAgregada)
 
@@ -194,25 +193,28 @@ function desactivarBotonCarrito() {
 }
 
 
-
+//funcion para setear en formato date
+function parseDate(input) {
+    let parts = input.match(/(\d+)/g);
+    return new Date(parts[0], parts[1] - 1, parts[2]);
+}
 
 
 function renderizarCarrito() {
     carritoContainer.innerHTML = "";
 
-    //hacer fecha
-    /* const fechaDesde = localStorage.getItem('dia-desde')
-    console.log(fechaDesde);
+    let fechaDesde = JSON.parse(localStorage.getItem('dia-desde'))
+    fechaDesde = parseDate(fechaDesde);
+    fechaDesde = fechaDesde.toISOString().slice(0, 10);
 
-    const desde = fechaDesde.toString().slice(0, 10);
-    console.log(desde); */
-
-
+    let fechaHasta = JSON.parse(localStorage.getItem('dia-hasta'))
+    fechaHasta = parseDate(fechaHasta);
+    fechaHasta = fechaHasta.toISOString().slice(0, 10);
 
     const carritoFecha = document.createElement('div')
     carritoFecha.classList.add('carrito-fecha')
     carritoFecha.innerHTML = `
-        <p>Desde el 22/05/2023 hasta el 30/05/20223</p>
+        <p>Ingreso: ${fechaDesde}  Egreso: ${fechaHasta}  Catidad de noches: ${cantidadNoches}</p>
     `
     carritoContainer.append(carritoFecha)
 
@@ -318,7 +320,12 @@ function botonPagar() {
                 showConfirmButton: true,
                 confirmButtonText: 'Aceptar',
 
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    location.href = "reserva.html"
+                }
             })
+
         } else {
             modalCarrito.classList.remove('activo')
             Swal.fire({

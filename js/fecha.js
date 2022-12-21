@@ -74,7 +74,6 @@ botonEnviarReserva.addEventListener('click', (e) => {
 
     const cantidadNoches = calcularNoches(diaDesde, diaHasta)
 
-
     if (cantidadNoches > 0) {
 
         const evento = (res) => {
@@ -89,7 +88,6 @@ botonEnviarReserva.addEventListener('click', (e) => {
                     modalSpinner.classList.remove('modal-spinner-activo')
                 }, 1000)
             })
-
         }
 
         evento(true)
@@ -97,11 +95,11 @@ botonEnviarReserva.addEventListener('click', (e) => {
                 habitacionesDisponibles = [kingRoom, dobleQueenRoom, kingRoomPremium, simpleSuite]
                 localStorage.setItem('habitaciones-disponibles', JSON.stringify(habitacionesDisponibles))
                 localStorage.setItem('cantidad-noches', cantidadNoches)
-                localStorage.setItem('dia-desde', diaDesde)
-                localStorage.setItem('dia-hasta', diaHasta)
-
+                localStorage.setItem('dia-desde', JSON.stringify(diaDesde))
+                localStorage.setItem('dia-hasta', JSON.stringify(diaHasta))
             });
 
+        //modal de error
     } else {
         modalSpinner.classList.remove('modal-spinner-activo')
         Swal.fire({
